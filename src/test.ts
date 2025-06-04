@@ -41,6 +41,34 @@ async function testKowalskiAnalysis() {
       originalTweet: "Should I quit my job to become a professional gamer? 🎮",
       mentionText: "@AskKowalski tactical assessment please",
       username: "career_question"
+    },
+    {
+      originalTweet: "Check out my homemade pizza! First time making the dough from scratch 🍕",
+      mentionText: "@AskKowalski analyze this masterpiece",
+      username: "pizza_chef",
+      media: [
+        {
+          media_key: "mock_photo_1",
+          type: "photo" as const,
+          url: "https://example.com/pizza.jpg",
+          width: 1200,
+          height: 800
+        }
+      ]
+    },
+    {
+      originalTweet: "My cat discovered the printer and now this is my life...",
+      mentionText: "@AskKowalski what do you make of this situation?",
+      username: "cat_parent",
+      media: [
+        {
+          media_key: "mock_photo_2", 
+          type: "photo" as const,
+          url: "https://example.com/cat_printer.jpg",
+          width: 800,
+          height: 600
+        }
+      ]
     }
   ];
 
@@ -78,10 +106,18 @@ function showMockResponses() {
     {
       tweet: "Pizza is the ultimate food. You can have it for breakfast, lunch, AND dinner!",
       response: "Fascinating analysis, soldier! My calculations confirm pizza's nutritional versatility coefficient at 96.7%. Tactical note: recommend balanced dietary protocols for optimal penguin performance! 🐧"
+    },
+    {
+      tweet: "Check out my homemade pizza! [WITH IMAGE]",
+      response: "Visual reconnaissance confirms: exceptional crust formation and optimal cheese distribution patterns detected! My tactical assessment: 98.2% success probability. Mission accomplished, chef! 🐧🍕"
+    },
+    {
+      tweet: "My cat discovered the printer... [WITH IMAGE]", 
+      response: "Analysis complete! Visual data indicates feline tactical superiority over office equipment. Probability of continued chaos: 99.7%. Recommend immediate treat-based negotiations, soldier! 🐧😸"
     }
   ];
 
-  console.log('🐧 Mock Kowalski Analysis Responses:\n');
+  console.log('🐧 Mock Kowalski Analysis Responses (including image analysis):\n');
 
   mockResponses.forEach((mock, index) => {
     console.log(`Test Case ${index + 1}:`);
@@ -90,7 +126,8 @@ function showMockResponses() {
     console.log('─'.repeat(60));
   });
 
-  console.log('\n💡 To see real AI responses, set up your GEMINI_API_KEY in the .env file!');
+  console.log('\n💡 To see real AI responses with image analysis, set up your GEMINI_API_KEY in the .env file!');
+  console.log('🖼️ Note: Image analysis will work with real photos when deployed - mock URLs used in tests.');
 }
 
 // Run the test if this file is executed directly

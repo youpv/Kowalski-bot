@@ -6,7 +6,8 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 
 - 🐧 **Authentic Kowalski Personality**: Responds with military precision and intellectual curiosity
 - 🤖 **AI-Powered Analysis**: Uses Google's Gemini AI for cost-effective responses
-- 📊 **Context-Aware**: Analyzes the original tweet being replied to
+- 🖼️ **Image Analysis**: Analyzes photos, charts, screenshots, and visual content!
+- 📊 **Context-Aware**: Analyzes the original tweet being replied to (text + images)
 - ⚡ **Real-time Monitoring**: Continuously monitors for mentions via GitHub Actions
 - 🛡️ **Rate Limit Handling**: Built-in protections for Twitter API limits
 - 🚀 **Serverless Deployment**: Runs completely free on GitHub Actions
@@ -14,10 +15,11 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 ## How It Works
 
 1. Someone mentions your bot with various trigger phrases (see examples below)
-2. GitHub Actions runs the bot every 2 minutes
+2. GitHub Actions runs the bot every 5 minutes
 3. Bot detects the mention and gets context from the original tweet
-4. Generates a Kowalski-style analysis using Gemini AI
-5. Replies with military precision and humor!
+4. **NEW**: Downloads and analyzes any images in the tweet
+5. Generates a Kowalski-style analysis using Gemini AI (with vision!)
+6. Replies with military precision and humor!
 
 ## Setup Instructions
 
@@ -80,7 +82,7 @@ git add .
 git commit -m "Configure Kowalski bot"
 git push origin main
 
-# GitHub Actions will automatically start running every 2 minutes!
+# GitHub Actions will automatically start running every 5 minutes!
 ```
 
 ## Usage
@@ -116,11 +118,19 @@ The bot responds to various natural phrases:
 
 **Example Thread:**
 
-**User tweets**: `"Just deployed my first app! 🚀"`
+**User tweets**: `"Just deployed my first app! 🚀"` + screenshot
 
 **Someone replies**: `@AskKowalski analysis`
 
-**Bot responds**: `@username Analysis complete! According to my calculations, this deployment exhibits 87% probability of success indicators. Tactical assessment: recommend monitoring protocols and celebration rations, soldier! 🐧`
+**Bot responds**: `@username Analysis complete! According to my calculations, this deployment exhibits 87% probability of success indicators. Visual reconnaissance confirms clean UI design patterns. Tactical assessment: recommend monitoring protocols and celebration rations, soldier! 🐧`
+
+**Another Example with Images:**
+
+**User tweets**: `"Rate my homemade pizza! 🍕"` + photo
+
+**Someone replies**: `@AskKowalski what do you think?`
+
+**Bot responds**: `@username Visual reconnaissance confirms: exceptional crust formation and optimal cheese distribution patterns detected! My tactical assessment: 98.2% success probability. Mission accomplished, chef! 🐧🍕`
 
 ## Bot Personality
 
@@ -139,11 +149,19 @@ Kowalski responds with:
 - ✅ **Automatic scaling**: Handles traffic spikes
 - ✅ **Reliable**: GitHub's infrastructure
 - ✅ **Easy monitoring**: Built-in logs and notifications
+- ✅ **Rate limit handling**: Smart retry logic for Twitter API
 
 ### Usage Calculations
-- **Runs every 2 minutes** = 720 runs/month
-- **~1 minute per run** = 720 minutes/month used
+- **Runs every 5 minutes** = 288 runs/month (reduced to avoid rate limits)
+- **~1-2 minutes per run** = 288-576 minutes/month used
 - **Well within GitHub's 2,000 free minutes!**
+
+### Rate Limit Protection
+The bot includes smart rate limit handling:
+- ⏰ **Automatic retry** with exponential backoff
+- 🛡️ **Graceful degradation** when limits are hit
+- 📊 **Rate limit monitoring** with detailed logs
+- ⚡ **Optimized scheduling** (5-minute intervals)
 
 ## Project Structure
 

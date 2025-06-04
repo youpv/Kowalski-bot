@@ -8,6 +8,15 @@ export interface BotConfig {
   checkIntervalMinutes: number;
 }
 
+export interface TwitterMedia {
+  media_key: string;
+  type: 'photo' | 'video' | 'animated_gif';
+  url?: string;
+  preview_image_url?: string;
+  width?: number;
+  height?: number;
+}
+
 export interface TwitterMention {
   id: string;
   text: string;
@@ -19,6 +28,9 @@ export interface TwitterMention {
     id: string;
   }>;
   created_at: string;
+  attachments?: {
+    media_keys?: string[];
+  };
 }
 
 export interface TwitterUser {
@@ -31,6 +43,7 @@ export interface AnalysisContext {
   originalTweet: string;
   mentionText: string;
   username: string;
+  media?: TwitterMedia[];
 }
 
 export interface KowalskiResponse {
