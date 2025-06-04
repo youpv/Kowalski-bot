@@ -1,10 +1,10 @@
 # 🚀 Quick Setup Guide
 
-Get your Kowalski Analysis Bot running in minutes!
+Get your Kowalski Analysis Bot running for FREE on GitHub Actions in minutes!
 
 ## Prerequisites Checklist
 
-- [ ] Node.js 18+ installed
+- [ ] GitHub account (free)
 - [ ] Twitter Developer Account
 - [ ] Google AI Studio Account
 
@@ -32,72 +32,111 @@ Get your Kowalski Analysis Bot running in minutes!
 3. Add a profile picture (penguin recommended! 🐧)
 4. Note the username (without @)
 
-## 3. Installation
+## 3. Fork & Deploy
 
-```bash
-# Install dependencies
-npm install
+### Fork the Repository
+1. Go to this repository on GitHub
+2. Click **"Fork"** (top right)
+3. Fork to your account
 
-# Copy environment template
-cp .env.example .env
-```
+### Add GitHub Secrets
+1. In **your forked repo**: Settings → Secrets and variables → Actions
+2. Click **"New repository secret"** for each:
+   ```
+   TWITTER_API_KEY → your_api_key_here
+   TWITTER_API_SECRET → your_api_secret_here
+   TWITTER_ACCESS_TOKEN → your_access_token_here
+   TWITTER_ACCESS_TOKEN_SECRET → your_access_token_secret_here
+   GEMINI_API_KEY → your_gemini_key_here
+   BOT_USERNAME → your_bot_username_without_@
+   ```
 
-## 4. Configuration
+### Deploy (Automatic!)
+The bot is now deployed! GitHub Actions will:
+- ✅ Run every 2 minutes automatically
+- ✅ Check for mentions
+- ✅ Reply as Kowalski
+- ✅ All for FREE!
 
-Edit `.env` file:
+## 4. Test & Verify
 
-```env
-TWITTER_API_KEY=your_api_key_here
-TWITTER_API_SECRET=your_api_secret_here
-TWITTER_ACCESS_TOKEN=your_access_token_here
-TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret_here
-GEMINI_API_KEY=your_gemini_key_here
-BOT_USERNAME=your_bot_username_without_@
-```
+### Check It's Running
+1. Go to your repo's **Actions** tab
+2. You should see "Kowalski Analysis Bot" workflows running
+3. Click on a run to see logs
 
-## 5. Test & Run
+### Test the Bot
+1. Create a test tweet from any account
+2. Reply: `@YourBotUsername Kowalski, analysis`
+3. Wait up to 2 minutes for response!
 
-```bash
-# Test the AI responses (mock mode)
-npm test
+### Manual Test
+- Go to **Actions** tab
+- Click **"Kowalski Analysis Bot"**
+- Click **"Run workflow"** button
+- Watch it run immediately!
 
-# Build the project
-npm run build
+## 5. Monitor Your Bot
 
-# Start the bot
-npm start
-```
+### GitHub Actions Dashboard
+- **Actions tab**: See all runs and their status
+- **Green checkmarks**: Successful runs
+- **Red X's**: Failed runs (click to debug)
 
-## 6. Verify It's Working
+### View Logs
+1. Click any workflow run
+2. Click "Run Kowalski Bot"
+3. See detailed logs of what happened
 
-1. Visit `http://localhost:3000/health` - should show bot status
-2. Create a test tweet
-3. Reply with: `@YourBotUsername Kowalski, analysis`
-4. Wait for the response!
+## Common Issues & Solutions
 
-## Common Issues
+### ❌ Bot Not Responding
+**Check:**
+- Actions tab for failed runs
+- GitHub Secrets are correctly set
+- Bot username matches the one in secrets
+- Twitter app has Read & Write permissions
 
-**Bot not responding?**
-- Check logs in terminal
-- Verify API keys are correct
-- Ensure bot username matches .env file
-- Check Twitter API quota
+### ❌ Workflow Not Running
+**Solutions:**
+- Enable Actions in your repo settings
+- Check if you have any workflow failures
+- Try manual trigger: Actions → Run workflow
 
-**Build errors?**
-- Run `npm install` again
-- Check Node.js version (needs 18+)
+### ❌ Authentication Errors  
+**Fix:**
+- Double-check all GitHub Secrets
+- Regenerate Twitter access tokens
+- Ensure tokens are for the BOT account, not your main account
 
-**Permission errors?**
-- Verify Twitter app has Read & Write permissions
-- Regenerate access tokens after permission change
+## GitHub Actions Benefits
+
+- ✅ **Completely FREE**: 2,000 minutes/month (you'll use ~720)
+- ✅ **No server management**: GitHub handles everything
+- ✅ **Automatic updates**: Push code changes and they deploy instantly
+- ✅ **Built-in monitoring**: See exactly what's happening
+- ✅ **Reliable**: Runs on GitHub's infrastructure
 
 ## Next Steps
 
-- Monitor the bot logs for mentions
-- Adjust `CHECK_INTERVAL_MINUTES` for different polling rates
-- Deploy to cloud for 24/7 operation
-- Customize Kowalski's personality in `src/gemini.ts`
+### Customize Your Bot
+- Edit `src/gemini.ts` to change Kowalski's personality
+- Modify the cron schedule in `.github/workflows/kowalski-bot.yml`
+- Add more trigger phrases beyond "analysis"
+
+### Monitor Performance
+- Check Actions tab daily for any issues
+- Monitor your Twitter API usage in developer portal
+- Watch for rate limit warnings in logs
+
+### Scale Up (Optional)
+If you need more than GitHub's free tier:
+- Use your GitHub Education Pack credits
+- Deploy to DigitalOcean ($200 free credit)
+- Upgrade to GitHub Pro for more Actions minutes
 
 ---
 
-Need help? Check the full README.md for detailed documentation! 
+🎉 **That's it!** Your bot is now running 24/7 for free and will respond to mentions every 2 minutes!
+
+Need help? Check the main README.md for detailed troubleshooting. 

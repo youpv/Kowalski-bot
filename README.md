@@ -7,15 +7,15 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 - 🐧 **Authentic Kowalski Personality**: Responds with military precision and intellectual curiosity
 - 🤖 **AI-Powered Analysis**: Uses Google's Gemini AI for cost-effective responses
 - 📊 **Context-Aware**: Analyzes the original tweet being replied to
-- ⚡ **Real-time Monitoring**: Continuously monitors for mentions
+- ⚡ **Real-time Monitoring**: Continuously monitors for mentions via GitHub Actions
 - 🛡️ **Rate Limit Handling**: Built-in protections for Twitter API limits
-- 📈 **Health Monitoring**: Simple web interface for monitoring bot status
+- 🚀 **Serverless Deployment**: Runs completely free on GitHub Actions
 
 ## How It Works
 
 1. Someone tweets: `@YourBot Kowalski, analysis` (as a reply to another tweet)
-2. The bot detects the mention
-3. Gets context from the original tweet
+2. GitHub Actions runs the bot every 2 minutes
+3. Bot detects the mention and gets context from the original tweet
 4. Generates a Kowalski-style analysis using Gemini AI
 5. Replies with military precision and humor!
 
@@ -23,7 +23,8 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 
 ### 1. Prerequisites
 
-- Node.js 18+ installed
+- Node.js 18+ installed (for local testing)
+- GitHub account
 - Twitter Developer Account
 - Google AI Studio Account (for Gemini API)
 
@@ -44,160 +45,156 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 2. Create a new API key
 3. Copy the API key for later use
 
-### 4. Installation
+### 4. Fork & Clone
 
 ```bash
-# Clone the repository
-git clone <your-repo-url>
+# Fork this repository on GitHub
+# Then clone your fork
+git clone https://github.com/yourusername/TwitterBot.git
 cd TwitterBot
 
-# Install dependencies
+# Install dependencies (for local testing)
 npm install
-
-# Copy environment file
-cp .env.example .env
 ```
 
-### 5. Configuration
+### 5. GitHub Secrets Configuration
 
-Edit the `.env` file with your credentials:
+In your GitHub repository:
 
-```env
-# Twitter API v2 Credentials
-TWITTER_API_KEY=your_twitter_api_key
-TWITTER_API_SECRET=your_twitter_api_secret
-TWITTER_ACCESS_TOKEN=your_access_token
-TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret
+1. **Go to Settings → Secrets and variables → Actions**
+2. **Add these Repository Secrets**:
+   ```
+   TWITTER_API_KEY=your_twitter_api_key
+   TWITTER_API_SECRET=your_twitter_api_secret
+   TWITTER_ACCESS_TOKEN=your_access_token
+   TWITTER_ACCESS_TOKEN_SECRET=your_access_token_secret
+   GEMINI_API_KEY=your_gemini_api_key
+   BOT_USERNAME=your_bot_username_without_@
+   ```
 
-# Google Gemini API Key
-GEMINI_API_KEY=your_gemini_api_key
-
-# Bot Configuration
-BOT_USERNAME=your_bot_username_without_@
-CHECK_INTERVAL_MINUTES=2
-
-# Server Configuration
-PORT=3000
-NODE_ENV=development
-```
-
-### 6. Running the Bot
+### 6. Deploy
 
 ```bash
-# Development mode (with auto-restart)
-npm run dev
+# Push to your GitHub repository
+git add .
+git commit -m "Configure Kowalski bot"
+git push origin main
 
-# Production build and run
-npm run build
-npm start
-
-# Watch mode for development
-npm run watch
+# GitHub Actions will automatically start running every 2 minutes!
 ```
 
 ## Usage
 
-Once the bot is running:
+Once deployed:
 
-1. **Health Check**: Visit `http://localhost:3000/health` to check bot status
-2. **Status**: Visit `http://localhost:3000/status` for general information
+1. **Monitor**: Check the Actions tab in your GitHub repo for bot activity
+2. **Test**: Try mentioning your bot with "Kowalski, analysis"
+3. **Debug**: View logs in the GitHub Actions runs
 
-To test the bot:
-1. Create a tweet
-2. Reply to that tweet with: `@YourBotUsername Kowalski, analysis`
-3. Watch for the bot's response!
+To test locally:
+1. Create a `.env` file with your credentials
+2. Run `npm test` to see mock responses
+3. Run `npm run test-twitter` to test API connections
 
 ## Example Interactions
 
-**User tweets**: `"Just saw the most amazing sunset! 🌅"`
+**User tweets**: `"Just deployed my first app! 🚀"`
 
-**Someone replies**: `@KowalskiBot Kowalski, analysis`
+**Someone replies**: `@AskKowalski Kowalski, analysis`
 
-**Bot responds**: `Analysis complete! According to my calculations, this sunset exhibits optimal chromatic distribution. Tactical assessment: 94% probability of romantic evening success. Recommended action: proceed with date night, soldier! 🐧`
+**Bot responds**: `@username Analysis complete! According to my calculations, this deployment exhibits 87% probability of success indicators. Tactical assessment: recommend monitoring protocols and celebration rations, soldier! 🐧`
 
 ## Bot Personality
 
 Kowalski responds with:
 - Military terminology and precision
-- Scientific analysis and calculations
+- Scientific analysis and calculations  
 - Humor and Madagascar references
 - Genuine insights about the content
 - Characteristic phrases like "Analysis complete!" and "According to my calculations..."
 
-## API Costs
+## Deployment Details
 
-- **Twitter API v2**: Free tier allows up to 50,000 tweets per month
-- **Google Gemini**: Very cost-effective, typically <$0.01 per analysis
+### GitHub Actions Benefits
+- ✅ **100% Free**: 2,000 minutes/month free tier
+- ✅ **No server management**: Completely serverless
+- ✅ **Automatic scaling**: Handles traffic spikes
+- ✅ **Reliable**: GitHub's infrastructure
+- ✅ **Easy monitoring**: Built-in logs and notifications
 
-## Deployment Options
-
-### Local Development
-```bash
-npm run dev
-```
-
-### Production Server
-```bash
-npm run build
-npm start
-```
-
-### Docker (Optional)
-```bash
-docker build -t kowalski-bot .
-docker run -d --env-file .env -p 3000:3000 kowalski-bot
-```
-
-### Cloud Deployment
-- **Railway**: Easy deployment with git integration
-- **Heroku**: Classic platform-as-a-service
-- **DigitalOcean App Platform**: Simple containerized deployment
-- **Google Cloud Run**: Serverless container deployment
+### Usage Calculations
+- **Runs every 2 minutes** = 720 runs/month
+- **~1 minute per run** = 720 minutes/month used
+- **Well within GitHub's 2,000 free minutes!**
 
 ## Project Structure
 
 ```
 src/
-├── index.ts          # Main application entry point
+├── index.ts          # Traditional server mode (for local dev)
+├── bot-runner.ts     # Single-run mode (for GitHub Actions)
 ├── bot.ts            # Core bot orchestration logic
 ├── twitter.ts        # Twitter API interactions
 ├── gemini.ts         # Google Gemini AI service
 ├── config.ts         # Configuration and environment setup
-└── types.ts          # TypeScript type definitions
+├── types.ts          # TypeScript type definitions
+└── test.ts           # Demo functionality
+
+.github/workflows/
+└── kowalski-bot.yml  # GitHub Actions workflow
 ```
+
+## Local Development
+
+For testing and development:
+
+```bash
+# Test AI responses (mock mode)
+npm test
+
+# Test Twitter API connection
+npm run test-twitter
+
+# Run single bot check (like GitHub Actions does)
+npm run bot-run
+
+# Run in continuous mode (traditional server)
+npm run dev
+```
+
+## Monitoring
+
+- **GitHub Actions**: Check the Actions tab for run history
+- **Logs**: View detailed logs for each run
+- **Manual Trigger**: Use "Run workflow" button for testing
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
+4. Test locally with `npm test`
 5. Submit a pull request
-
-## License
-
-MIT License - feel free to use and modify as needed!
 
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Bot not responding**: Check the logs for API errors and rate limits
-2. **Authentication errors**: Verify all API keys are correct
-3. **Permission errors**: Ensure Twitter app has Read and Write permissions
-4. **Rate limits**: The bot includes built-in delays to handle rate limits
+1. **Bot not responding**: Check GitHub Actions logs for errors
+2. **Authentication errors**: Verify all secrets are correctly set
+3. **Permission errors**: Ensure Twitter app has Read & Write permissions
+4. **Rate limits**: GitHub Actions includes built-in delays
 
-### Debug Mode
+### Debug Steps
 
-Set `NODE_ENV=development` for detailed logging.
+1. Check the **Actions** tab for failed runs
+2. Review the **logs** for specific errors
+3. Test locally with `npm run test-twitter`
+4. Verify all **GitHub Secrets** are correctly set
 
-## Support
+## License
 
-For issues and questions:
-1. Check the logs at the console
-2. Test API credentials manually
-3. Verify bot username is correct
-4. Check Twitter API quota usage
+MIT License - feel free to use and modify as needed!
 
 ---
 

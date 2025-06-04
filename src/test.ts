@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { GeminiService } from './gemini';
 import { AnalysisContext } from './types';
 

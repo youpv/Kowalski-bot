@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "A Twitter bot that responds as Kowalski from Madagascar when tagged for analysis",
   "main": "dist/index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "bot-run": "node dist/bot-runner.js",
     "dev": "ts-node src/index.ts",
     "watch": "nodemon --exec ts-node src/index.ts",
-    "test": "ts-node src/test.ts"
+    "test": "ts-node src/test.ts",
+    "test-twitter": "ts-node src/twitter-test.ts"
   },
-  "keywords": ["twitter", "bot", "kowalski", "madagascar", "ai"],
+  "keywords": ["twitter", "bot", "kowalski", "madagascar", "ai", "github-actions"],
   "author": "Youp Verkooijen",
   "license": "MIT",
   "dependencies": {
