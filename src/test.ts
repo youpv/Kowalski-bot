@@ -19,18 +19,28 @@ async function testKowalskiAnalysis() {
   const testCases: AnalysisContext[] = [
     {
       originalTweet: "Just saw the most amazing sunset! The colors were incredible 🌅",
-      mentionText: "@KowalskiBot Kowalski, analysis",
+      mentionText: "@AskKowalski analysis",
       username: "nature_lover"
     },
     {
       originalTweet: "Why does my code work on my machine but not in production? 😭",
-      mentionText: "@KowalskiBot Kowalski, analysis please!",
+      mentionText: "@AskKowalski what do you think?",
       username: "frustrated_dev"
     },
     {
       originalTweet: "Pizza is the ultimate food. You can have it for breakfast, lunch, AND dinner!",
-      mentionText: "@KowalskiBot Kowalski, analysis",
+      mentionText: "@AskKowalski Kowalski, analysis",
       username: "food_philosopher"
+    },
+    {
+      originalTweet: "Just finished my first marathon! 🏃‍♂️ My legs are jelly but I'm so proud!",
+      mentionText: "@AskKowalski analyze this achievement",
+      username: "marathon_runner"
+    },
+    {
+      originalTweet: "Should I quit my job to become a professional gamer? 🎮",
+      mentionText: "@AskKowalski tactical assessment please",
+      username: "career_question"
     }
   ];
 

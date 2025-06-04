@@ -13,7 +13,7 @@ A Twitter bot that responds as Kowalski from Madagascar when people request anal
 
 ## How It Works
 
-1. Someone tweets: `@YourBot Kowalski, analysis` (as a reply to another tweet)
+1. Someone mentions your bot with various trigger phrases (see examples below)
 2. GitHub Actions runs the bot every 2 minutes
 3. Bot detects the mention and gets context from the original tweet
 4. Generates a Kowalski-style analysis using Gemini AI
@@ -88,7 +88,13 @@ git push origin main
 Once deployed:
 
 1. **Monitor**: Check the Actions tab in your GitHub repo for bot activity
-2. **Test**: Try mentioning your bot with "Kowalski, analysis"
+2. **Test**: Try mentioning your bot with any of these trigger phrases:
+   - `@AskKowalski analysis`
+   - `@AskKowalski what do you think?`
+   - `@AskKowalski Kowalski, analysis`
+   - `@AskKowalski analyze this`
+   - `@AskKowalski tactical assessment`
+   - `@AskKowalski thoughts?`
 3. **Debug**: View logs in the GitHub Actions runs
 
 To test locally:
@@ -98,9 +104,21 @@ To test locally:
 
 ## Example Interactions
 
+**Trigger Options:**
+The bot responds to various natural phrases:
+- `@AskKowalski analysis` ✅
+- `@AskKowalski what do you think?` ✅
+- `@AskKowalski Kowalski, analysis` ✅
+- `@AskKowalski analyze this achievement` ✅
+- `@AskKowalski tactical assessment please` ✅
+- `@AskKowalski thoughts on this?` ✅
+- `@AskKowalski break it down` ✅
+
+**Example Thread:**
+
 **User tweets**: `"Just deployed my first app! 🚀"`
 
-**Someone replies**: `@AskKowalski Kowalski, analysis`
+**Someone replies**: `@AskKowalski analysis`
 
 **Bot responds**: `@username Analysis complete! According to my calculations, this deployment exhibits 87% probability of success indicators. Tactical assessment: recommend monitoring protocols and celebration rations, soldier! 🐧`
 

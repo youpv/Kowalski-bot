@@ -16,7 +16,8 @@ export class TwitterService {
 
   async checkForMentions(botUsername: string): Promise<TwitterMention[]> {
     try {
-      const mentions = await this.client.v2.search(`@${botUsername} "analysis"`, {
+      // Search for any mentions of the bot (removed the strict "analysis" requirement)
+      const mentions = await this.client.v2.search(`@${botUsername}`, {
         'tweet.fields': ['created_at', 'conversation_id', 'in_reply_to_user_id', 'referenced_tweets'],
         'user.fields': ['username'],
         expansions: ['author_id'],
@@ -145,10 +146,26 @@ export class TwitterService {
     const lowerText = text.toLowerCase();
     const lowerBotUsername = botUsername.toLowerCase();
     
-    // Check if the text contains the bot mention and "analysis"
-    return (
-      lowerText.includes(`@${lowerBotUsername}`) &&
-      lowerText.includes('analysis')
-    );
+    // Must contain the bot mention
+    if (!lowerText.includes(`@${lowerBotUsername}`)) {
+      return false;
+    }
+    
+    // Check for various analysis trigger words/phrases
+    const analysisTriggers = [
+      'analysis',
+      'analyze',
+      'what do you think',
+      'thoughts',
+      'opinion',
+      'assessment',
+      'evaluate',
+      'kowalski,',
+      'break it down',
+      'explain',
+      'tactical'
+    ];
+    
+    return analysisTriggers.some(trigger => lowerText.includes(trigger));
   }
 } 
